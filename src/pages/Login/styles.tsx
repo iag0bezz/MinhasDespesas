@@ -79,6 +79,8 @@ export const Button = styled.button`
     justify-content: center;
     align-items: center;
 
+    margin: ${props => props ? '30px' : '0px'}
+
     img {
         margin-right: 8px;
     }
