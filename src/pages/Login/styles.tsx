@@ -58,8 +58,13 @@ export const Content = styled.div`
 `
 
 export const Picture = styled.img`
-    width: 130px;
+    width: 150px;
+    max-width: 150px;
     border-radius: 50%;
+    margin-top: -45%;
+    background: #fff;
+
+    border: 5px solid #835afd;
 `
 
 export const Button = styled.button`

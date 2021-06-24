@@ -41,16 +41,24 @@ export default function Login() {
                 <Content>
                     <Picture src={user && user.profile != null ? user.profile : UnknownPicture} />
                     {user ? <p>Autenticado como {user.name}, <span onClick={() => signOut()}>não é você?</span></p> : undefined}
-                    <Button style={{ margin: user ? '' : '30px' }} onClick={() => {
-                        toast.promise(handleSignIn(), {
-                            loading: 'Autenticando usuário...',
-                            success: <b>Autenticado com sucesso!</b>,
-                            error: <b>Falha ao efetuar a autenticação.</b>
-                        })
-                    }}>
-                        <img style={{ marginRight: 5 }} src={GoogleIcon} alt="Google Icon" />
-                        Acesse sua conta com o Google
-                    </Button>
+                    {!user 
+                        ? (
+                            <Button style={{ margin: user ? '' : '30px' }} onClick={() => {
+                                toast.promise(handleSignIn(), {
+                                    loading: 'Autenticando usuário...',
+                                    success: <b>Autenticado com sucesso!</b>,
+                                    error: <b>Falha ao efetuar a autenticação.</b>
+                                })
+                            }}>
+                                <img style={{ marginRight: 5 }} src={GoogleIcon} alt="Google Icon" />
+                                Acesse sua conta com o Google
+                            </Button>
+                        ) : (
+                            <Button onClick={() => history.push('/dashboard')} style={{ backgroundColor: '#835afd', color: '#FFF' }} >
+                                Acessar página principal
+                            </Button>
+                        )
+                    }
                 </Content>
             </Main>
         </Container>
