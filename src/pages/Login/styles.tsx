@@ -1,36 +1,89 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
+    display: flex;
     height: 100vh;
 
-    display: flex;
-    align-items: stretch;
+    flex-direction: column;
 `
 
 export const Background = styled.div`
-    flex: 6;
-    background: #835afd;
+    flex: 2;
+    background-color: #835afd;
 
     display: flex;
+    align-items: center;
     flex-direction: column;
     justify-content: center;
 
-    padding: 120px 80px;
-`
+    img {
+        max-width: 400px;
+        opacity: 0.6;
+    }
 
-export const ImageIllustration = styled.img`
-    max-width: 500px;
-    max-height: 350px;
-    padding-bottom: 120px;
-`
-
-export const IllustrationText = styled.p`
-    font-size: 24px;
-    color: #fff;
-    line-height: 32px;
+    h2 {
+        color: #fff;
+        margin-top: 100px;
+    }
 `
 
 export const Main = styled.div`
-    flex: 8;
-    padding: 0 32px;
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+
+export const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    p {
+        margin: 30px;
+        font-size: 18px;
+        span {
+            color: #835afd;
+            cursor: pointer;
+
+            transition: filter 0.2s;
+
+            &:hover {
+                filter: brightness(0.9)
+            }
+        }
+    }
+`
+
+export const Picture = styled.img`
+    width: 130px;
+    border-radius: 50%;
+`
+
+export const Button = styled.button`
+    width: 350px;
+    height: 50px;
+    font-weight: 600;
+    background: transparent;
+    color: #29292e;
+
+    border-radius: 8px;
+    border: 2px solid #835afd;
+
+    transition: filter 0.2s;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        margin-right: 8px;
+    }
+
+    &:hover {
+        filter: brightness(0.9)
+    }
 `
