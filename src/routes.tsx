@@ -6,7 +6,7 @@ import { Toaster } from 'react-hot-toast'
 
 import { AuthContextProvider } from './contexts/AuthContext'
 
-import { ProtectedRoute } from './middleware/authMiddleware'
+import ProtectedRoute from './middleware/authMiddleware'
 
 import {
   Login,

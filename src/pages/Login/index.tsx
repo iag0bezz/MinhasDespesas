@@ -43,7 +43,7 @@ export default function Login() {
                     {user ? <p>Autenticado como {user.name}, <span onClick={() => signOut()}>não é você?</span></p> : undefined}
                     <Button style={{ margin: user ? '' : '30px' }} onClick={() => {
                         toast.promise(handleSignIn(), {
-                            loading: 'Efetuando login...',
+                            loading: 'Autenticando usuário...',
                             success: <b>Autenticado com sucesso!</b>,
                             error: <b>Falha ao efetuar a autenticação.</b>
                         })

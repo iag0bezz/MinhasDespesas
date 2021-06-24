@@ -12,6 +12,7 @@ type User = {
 
 type AuthContextType = {
     user: User | undefined;
+    checking: boolean;
     signIn: () => Promise<void>;
     signOut: () => void;
 }
@@ -24,6 +25,7 @@ export const AuthContext = createContext({} as AuthContextType)
 
 export function AuthContextProvider(props: AuthContextProviderProps) {
     const [user, setUser] = useState<User>()
+    const [checking, setChecking] = useState<boolean>(true)
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -41,6 +43,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
                     profile: photoURL
                 })
             }
+
+            setChecking(false)
         })
 
         return () => {
@@ -50,6 +54,8 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
 
     async function signIn() {
         const provider = new firebase.auth.GoogleAuthProvider()
+
+        await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
         const result = await auth.signInWithPopup(provider)
 
@@ -78,7 +84,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     }
 
     return (
-        <AuthContext.Provider value={{ user, signIn, signOut }}>
+        <AuthContext.Provider value={{ user, checking, signIn, signOut }}>
             {props.children}
         </AuthContext.Provider>
     )
