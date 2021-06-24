@@ -10,10 +10,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     outline: 0;
 
-    background-color: #312E39;
+    background-color: #f8f8f8;
   }
-  body input button textarea p {
-    font: 400 16px 'Roboto', sans-serif;
+
+  body, input, button, textarea {
+    font: 400 16px "Roboto", sans-serif;
   }
 `
 
