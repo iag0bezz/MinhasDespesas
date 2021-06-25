@@ -1,64 +1,82 @@
 import { useAuth } from '../../hooks/useAuth'
 import { useHistory } from 'react-router-dom'
 
-import toast from 'react-hot-toast'
-
 import {
     Container,
     Background,
     Main,
     Content,
-    Picture,
     Button
 } from './styles'
+
+import {
+    LoginForm,
+    RegisterForm
+} from '../../components'
 
 import { Helmet } from 'react-helmet'
 
 import Illustration from '../../assets/illustration.svg'
-import UnknownPicture from '../../assets/unknown_picture.svg'
 import GoogleIcon from '../../assets/google_icon.svg'
+import { useState } from 'react'
+
+type FormProps = {
+    email: string;
+    password: string;
+}
 
 export default function Login() {
     const history = useHistory()
-    const { user, signIn, signOut } = useAuth()
-    
-    async function handleSignIn() {
+    const { user, signInWithForm, signOutWithForm, signInWithGoogle } = useAuth()
+
+    const [login, setLogin] = useState(true)
+
+    async function handleSignInWithGoogle() {
         if(!user) {
-            await signIn()
+            await signInWithGoogle()
         }
 
         history.push('/dashboard')
+    }
+
+    async function handleSignInForm({ email, password }: FormProps) {
+        if(!user) {
+            await signInWithForm({email, password})
+        }
+        
+        history.push('/dashboard')
+    }
+
+    async function handleSignOutForm({ email, password }: FormProps) {
+        console.log(email, password)
+        if(!user) {
+            await signOutWithForm({ email, password })
+        }
+
+        history.push('/dashboard')
+    }
+
+    async function handleFormUpdate() {
+        setLogin(!login)
     }
 
     return (
         <Container>
             <Helmet title="Minhas Despesas - Autenticação" />
             <Background>
-                <img src={Illustration} alt="Illustration" />
-                <h2>Faça a gestão de todas suas despesas</h2>
+                <div>
+                    <img src={Illustration} alt="Illustration" />
+                    <h1>Organize sua vida financeira</h1>
+                    <h3>Gerencie, organize e controle toda sua vida financeira</h3>
+                </div>
             </Background>
             <Main>
                 <Content>
-                    <Picture src={user && user.profile != null ? user.profile : UnknownPicture} />
-                    {user ? <p>Autenticado como {user.name}, <span onClick={() => signOut()}>não é você?</span></p> : undefined}
-                    {!user 
-                        ? (
-                            <Button style={{ margin: user ? '' : '30px' }} onClick={() => {
-                                toast.promise(handleSignIn(), {
-                                    loading: 'Autenticando usuário...',
-                                    success: <b>Autenticado com sucesso!</b>,
-                                    error: <b>Falha ao efetuar a autenticação.</b>
-                                })
-                            }}>
-                                <img style={{ marginRight: 5 }} src={GoogleIcon} alt="Google Icon" />
-                                Acesse sua conta com o Google
-                            </Button>
-                        ) : (
-                            <Button onClick={() => history.push('/dashboard')} style={{ backgroundColor: '#835afd', color: '#FFF' }} >
-                                Acessar página principal
-                            </Button>
-                        )
-                    }
+                    {login 
+                        ? 
+                            <LoginForm handle={handleSignInForm} callback={handleFormUpdate} /> 
+                        : 
+                            <RegisterForm handle={handleSignOutForm} callback={handleFormUpdate} />}
                 </Content>
             </Main>
         </Container>

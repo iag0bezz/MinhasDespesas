@@ -3,32 +3,45 @@ import styled from 'styled-components'
 export const Container = styled.div`
     display: flex;
     height: 100vh;
-
-    flex-direction: column;
+    align-items: stretch;
 `
 
 export const Background = styled.div`
-    flex: 2;
+    flex: 6;
     background-color: #835afd;
 
     display: flex;
     align-items: center;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: center;
+    justify-content: left;
 
-    img {
-        max-width: 400px;
-        opacity: 0.6;
-    }
+    padding: 120px 80px;
 
-    h2 {
-        color: #fff;
-        margin-top: 100px;
+    div {
+        img {
+            max-width: 400px;
+            opacity: 0.6;
+        }
+
+        h1 {
+            color: #fff;
+            padding-top: 25px;
+            font-size: 28px;
+
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        h3 {
+            color: #fff;
+            font-weight: normal;
+        }
     }
 `
 
 export const Main = styled.div`
-    flex: 1;
+    flex: 8;
+
+    padding: 0 32px;
 
     display: flex;
     align-items: center;
@@ -61,10 +74,6 @@ export const Picture = styled.img`
     width: 150px;
     max-width: 150px;
     border-radius: 50%;
-    margin-top: -45%;
-    background: #fff;
-
-    border: 5px solid #835afd;
 `
 
 export const Button = styled.button`
@@ -75,7 +84,7 @@ export const Button = styled.button`
     color: #29292e;
 
     border-radius: 8px;
-    border: 2px solid #835afd;
+    border: 1px solid #a8a8b3;
 
     transition: filter 0.2s;
     cursor: pointer;

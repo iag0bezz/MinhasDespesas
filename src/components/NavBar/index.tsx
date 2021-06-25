@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { useAuth } from '../../hooks/useAuth'
 
 import {
@@ -8,11 +8,12 @@ import {
 
 export default function NavBar() {
     const { signOut } = useAuth()
+    const history = useHistory()
 
     return (
         <Container>
             <Header>
-                <p>Minhas Finanças</p>
+                <p onClick={() => history.push('/dashboard')}>Minhas Finanças</p>
                 <nav>
                     <NavLink activeClassName="selected" to='/dashboard' exact>
                         Inicio
