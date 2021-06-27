@@ -6,7 +6,8 @@ import {
     Background,
     Main,
     Content,
-    Button
+    Button,
+    Divider
 } from './styles'
 
 import {
@@ -19,6 +20,7 @@ import { Helmet } from 'react-helmet'
 import Illustration from '../../assets/illustration.svg'
 import GoogleIcon from '../../assets/google_icon.svg'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 type FormProps = {
     email: string;
@@ -72,6 +74,19 @@ export default function Login() {
             </Background>
             <Main>
                 <Content>
+                    <Button onClick={() => toast.promise(handleSignInWithGoogle(), {
+                        loading: 'Autenticando usuário...',
+                        success: 'Autenticado com sucesso!',
+                        error: 'Ocorreu uma falha na autenticação.'
+                    })}>
+                        <img src={GoogleIcon} alt="Google Icon" />
+                        Acesse sua conta com o Google
+                    </Button>
+
+                    <Divider>
+                        ou
+                    </Divider>
+
                     {login 
                         ? 
                             <LoginForm handle={handleSignInForm} callback={handleFormUpdate} /> 

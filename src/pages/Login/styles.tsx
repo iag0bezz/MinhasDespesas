@@ -77,10 +77,10 @@ export const Picture = styled.img`
 `
 
 export const Button = styled.button`
-    width: 350px;
+    width: 100%;
     height: 50px;
     font-weight: 600;
-    background: transparent;
+    background: #fff;
     color: #29292e;
 
     border-radius: 8px;
@@ -93,7 +93,7 @@ export const Button = styled.button`
     justify-content: center;
     align-items: center;
 
-    margin: ${props => props ? '30px' : '0px'}
+    margin-bottom: 10px;
 
     img {
         margin-right: 8px;
@@ -102,4 +102,13 @@ export const Button = styled.button`
     &:hover {
         filter: brightness(0.9)
     }
+`
+
+export const Divider = styled.span`
+    color: #a8a8b3;
+    margin-bottom: 10px;
+    font-size: 14px;
+
+    display: flex;
+    align-items: center;
 `
